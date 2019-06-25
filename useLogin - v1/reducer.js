@@ -1,22 +1,25 @@
 export const initialState = {
-  progress: 'Initial',
-  login: '',
-  password: '',
-  id: 0,
+  progress: "Initial",
+  login: "",
+  password: "",
+  id: 0
 };
 
 export function reducer(state, action) {
   switch (action.type) {
-    case 'onLoginInitial':
+    case "onLoginInitial":
       return {
         ...state,
         login: action.usuario,
-        password: action.senha,
+        password: action.senha
       };
-    case 'onLoginVerifySucess':
-      return { ...state, progress: 'Sucess', id: action.idUsuario };
-    case 'onLoginError':
-      return { ...state, progress: { login: action.login, password: action.password } };
+    case "onLoginVerifySucess":
+      return { ...state, progress: "Sucess", id: action.idUsuario };
+    case "onLoginError":
+      return {
+        ...state,
+        progress: { login: action.login, password: action.password }
+      };
     default:
       return { ...state };
   }

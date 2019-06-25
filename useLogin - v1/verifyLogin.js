@@ -1,20 +1,27 @@
-const loginTest = { login: 'teste', password: 'teste123', idUsuario: 1 };
+const loginTest = { login: "teste", password: "teste123", idUsuario: 1 };
 
 export default function verifyLogin(login, dispatch) {
-  let validator = 'onLoginError';
+  let validator = "onLoginError";
 
-  let actions = {};
+  let actions = { login: "", password: "" };
 
-  if (login.login !== '' && login.password !== '') {
-    if (login.login === loginTest.login && login.password === loginTest.password) {
-      validator = 'onLoginVerifySucess';
+  if (login.usuario.length > 0 && login.senha.length > 0) {
+    if (
+      login.usuario === loginTest.login &&
+      login.senha === loginTest.password
+    ) {
+      validator = "onLoginVerifySucess";
       actions = { idUsuario: loginTest.idUsuario };
-    } else if (login.login !== loginTest.login && login.password !== loginTest.password) {
-      actions = { login: 'Usuário Incorreto!', password: 'Senha Incorreta!' };
-    } else if (login.login !== loginTest.login) {
-      actions = { login: 'Usuário Incorreto!', password: '' };
-    } else if (login.password !== loginTest.password) {
-      actions = { login: '', password: 'Senha Incorreta!' };
+    } else {
+      actions = { login: "Usuário Incorreto!", password: "Senha Incorreta!" };
+    }
+  } else {
+    if (login.usuario.length === 0) {
+      actions = { ...actions, login: "Digite algum Valor!" };
+    }
+
+    if (login.senha.length === 0) {
+      actions = { ...actions, password: "Digite algum Valor!" };
     }
   }
 
