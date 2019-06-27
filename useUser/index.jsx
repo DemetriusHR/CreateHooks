@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import usersGet from './usersGet';
+import usersGet from "./usersGet";
 
-export default function useUsuario() {
+export default function useUser() {
   const [user, setUserLog] = useState({});
 
-  function setUser(id) {
-    const usersGetFilter = usersGet.filter(user => user.id === id);
-
-    setUserLog(usersGetFilter[0]);
+  async function setUser(id) {
+    const usersGetFilter = await usersGet(id);
+    setUserLog(usersGetFilter);
   }
 
   return [user, setUser];
